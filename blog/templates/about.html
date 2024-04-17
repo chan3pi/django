@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %} 
+
+{% if user.is_authenticated %}
+hello {{user.username}}
+<table class="table table-stripped table-hover table-bordered">
+  <thead class="table-dark">
+      <tr>
+          <th scope="col">title</th>
+          <th scope="col">author</th>
+          <th scope="col">body</th>
+          <th scope="col">date_added</th>
+          <th scope="col">id</th>
+      </tr>
+  </thead>
+  <tbody>
+      {% if books %}
+           {% for book in books %}
+           <tr>
+              <td>{{book.title}}</td>
+              <td>{{book.author}}</td>
+              <td>{{book.body}}</td>
+              <td>{{book.date_added}}</td>
+              <td><a href="{% url 'book' book.id %}">{{ book.id }}</a></td>
+           </tr>
+           {% endfor %}
+      {% endif %}
+  </tbody>
+</table>
+
+<br>
+
+
+{% endif %}
+{% endblock content %}
